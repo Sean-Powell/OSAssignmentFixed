@@ -43,10 +43,10 @@ RM = /home/sean/Desktop/clion-2017.3.3/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sean/CLionProjects/OSAssingment
+CMAKE_SOURCE_DIR = /home/sean/CLionProjects/OSAssignmentFixed
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sean/CLionProjects/OSAssingment/cmake-build-debug
+CMAKE_BINARY_DIR = /home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/OSAssingment.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/OSAssingment.dir/flags.make
 
 CMakeFiles/OSAssingment.dir/main.c.o: CMakeFiles/OSAssingment.dir/flags.make
 CMakeFiles/OSAssingment.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sean/CLionProjects/OSAssingment/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/OSAssingment.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OSAssingment.dir/main.c.o   -c /home/sean/CLionProjects/OSAssingment/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/OSAssingment.dir/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OSAssingment.dir/main.c.o   -c /home/sean/CLionProjects/OSAssignmentFixed/main.c
 
 CMakeFiles/OSAssingment.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/OSAssingment.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sean/CLionProjects/OSAssingment/main.c > CMakeFiles/OSAssingment.dir/main.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sean/CLionProjects/OSAssignmentFixed/main.c > CMakeFiles/OSAssingment.dir/main.c.i
 
 CMakeFiles/OSAssingment.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OSAssingment.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sean/CLionProjects/OSAssingment/main.c -o CMakeFiles/OSAssingment.dir/main.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sean/CLionProjects/OSAssignmentFixed/main.c -o CMakeFiles/OSAssingment.dir/main.c.s
 
 CMakeFiles/OSAssingment.dir/main.c.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/OSAssingment.dir/main.c.o.provides.build: CMakeFiles/OSAssingment.dir
 
 CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o: CMakeFiles/OSAssingment.dir/flags.make
 CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o: ../linenoise/linenoise.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sean/CLionProjects/OSAssingment/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o   -c /home/sean/CLionProjects/OSAssingment/linenoise/linenoise.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o   -c /home/sean/CLionProjects/OSAssignmentFixed/linenoise/linenoise.c
 
 CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sean/CLionProjects/OSAssingment/linenoise/linenoise.c > CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sean/CLionProjects/OSAssignmentFixed/linenoise/linenoise.c > CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.i
 
 CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sean/CLionProjects/OSAssingment/linenoise/linenoise.c -o CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sean/CLionProjects/OSAssignmentFixed/linenoise/linenoise.c -o CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.s
 
 CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o.requires:
 
@@ -117,7 +117,7 @@ OSAssingment: CMakeFiles/OSAssingment.dir/main.c.o
 OSAssingment: CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o
 OSAssingment: CMakeFiles/OSAssingment.dir/build.make
 OSAssingment: CMakeFiles/OSAssingment.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sean/CLionProjects/OSAssingment/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable OSAssingment"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable OSAssingment"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/OSAssingment.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -135,6 +135,6 @@ CMakeFiles/OSAssingment.dir/clean:
 .PHONY : CMakeFiles/OSAssingment.dir/clean
 
 CMakeFiles/OSAssingment.dir/depend:
-	cd /home/sean/CLionProjects/OSAssingment/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sean/CLionProjects/OSAssingment /home/sean/CLionProjects/OSAssingment /home/sean/CLionProjects/OSAssingment/cmake-build-debug /home/sean/CLionProjects/OSAssingment/cmake-build-debug /home/sean/CLionProjects/OSAssingment/cmake-build-debug/CMakeFiles/OSAssingment.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sean/CLionProjects/OSAssignmentFixed /home/sean/CLionProjects/OSAssignmentFixed /home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug /home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug /home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles/OSAssingment.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/OSAssingment.dir/depend
 

@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/sean/CLionProjects/OSAssingment/linenoise/linenoise.c" "/home/sean/CLionProjects/OSAssingment/cmake-build-debug/CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o"
-  "/home/sean/CLionProjects/OSAssingment/main.c" "/home/sean/CLionProjects/OSAssingment/cmake-build-debug/CMakeFiles/OSAssingment.dir/main.c.o"
+  "/home/sean/CLionProjects/OSAssignmentFixed/linenoise/linenoise.c" "/home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o"
+  "/home/sean/CLionProjects/OSAssignmentFixed/main.c" "/home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles/OSAssingment.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
