@@ -87,6 +87,12 @@
 		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/main.c">
 			<Option target="OSAssingment"/>
 		</Unit>
+		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/variables.c">
+			<Option target="OSAssingment"/>
+		</Unit>
+		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/variables.h">
+			<Option target="OSAssingment"/>
+		</Unit>
 		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

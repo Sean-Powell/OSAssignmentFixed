@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/home/sean/CLionProjects/OSAssignmentFixed/linenoise/linenoise.c" "/home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o"
   "/home/sean/CLionProjects/OSAssignmentFixed/main.c" "/home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles/OSAssingment.dir/main.c.o"
+  "/home/sean/CLionProjects/OSAssignmentFixed/variables.c" "/home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles/OSAssingment.dir/variables.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
