@@ -31,7 +31,32 @@ int editVariable(char* _name, char* _newData){
         }
     }
 
-    return 1;
+    return -1;
+}
+
+char* getVarData(char* _varName){
+    for(int i = 0; i < varsSize; i++){
+        if(strcmp(_varName, vars[i].name) == 0){
+            return vars[i].data;
+        }
+    }
+    //returns null if data could not be found
+    return NULL;
+}
+
+int setVartoVar(char* _varName1, char *_varName2){
+    char* varData = getVarData(_varName2);
+    if(varData == NULL){
+        //var 2 does not exist
+        return -2;
+    }
+    int returned = editVariable(_varName1, varData);
+    if(returned == -1){
+        //var 1 does not exist
+        return -1;
+    }else{
+        return 0;
+    }
 }
 
 VAR findVariable(char *_name) {
