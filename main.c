@@ -13,6 +13,10 @@
 #define MAX_ARGS 255
 //#define DEBUG
 
+char tempLine[256];
+
+int internalCommands(char *_args[MAX_ARGS], int MAX_VAR_SIZE);
+
 
 int Debug(char *_toPrint, ...) {
 #ifdef DEBUG
@@ -104,13 +108,13 @@ int internalVars(char **_args, int MAX_VAR_SIZE) {
 
 int internalPrint(char *_args[MAX_ARGS], int MAX_VAR_SIZE) {
     int i = 1;
-    if(strstr(_args[i], "\"")) {
+    if (strstr(_args[i], "\"")) {
         bool firstTime = true;
         bool found = false;
         for (i = 1; i < MAX_ARGS && _args[i] != NULL && !found; i++) {
             char *temp = _args[i];
             if (strstr(_args[i], "\"")) {
-                if(firstTime != true) {
+                if (firstTime != true) {
                     printf(" ");
                     for (int j = 0; j < sizeof(temp); j++) {
                         if (temp[j] == 34) {
@@ -120,8 +124,7 @@ int internalPrint(char *_args[MAX_ARGS], int MAX_VAR_SIZE) {
                             printf("%c", temp[j]);
                         }
                     }
-                }
-                else {
+                } else {
                     int x = 0;;
                     if (firstTime) {
                         firstTime = false;
@@ -133,13 +136,12 @@ int internalPrint(char *_args[MAX_ARGS], int MAX_VAR_SIZE) {
                     }
                     printf(" ");
                 }
-            }
-            else{
+            } else {
                 printf("%s", temp);
             }
         }
         printf("\n");
-    }else {
+    } else {
         while (_args[i] != NULL) {
             if (strstr(_args[i], "$")) {
                 char *data = getVarData(_args[i]);
@@ -159,16 +161,104 @@ int internalPrint(char *_args[MAX_ARGS], int MAX_VAR_SIZE) {
     }
 }
 
+int changeWorkingDir(char *dir) {
+    //char newDir[512];
+    //snprintf(newDir, sizeof(newDir), dir);
+    int returned = chdir(dir);
+    char newCWD[512];
+    getcwd(newCWD, sizeof(newCWD));
+    editVariable("$CWD", newCWD);
+    if (returned == -1) {
+        printf("The working directory was unable to be changed");
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+int scriptFile(char *path, int MAX_VAR_SIZE) {
+    FILE *file = NULL;
+    printf("file created\n");
+    file = fopen(path, "r");
+    printf("file path set\n");
+    char lineSplit[MAX_ARGS][MAX_VAR_SIZE];
+    printf("Line split made\n");
+    if (file) {
+        printf("File exists\n");
+        bool endOfLine = false;
+        int counter = 0;
+        char token[256];
+        while (fgets(tempLine, sizeof(tempLine), file) != NULL){
+            printf("Line is: %s\n", tempLine);
+           int index = 0, indexTemp = 0;
+           while(!endOfLine){
+               printf("Counter: %d\n", counter);
+               if(tempLine[indexTemp] != '\0' && tempLine[indexTemp] != '\n'){
+                   if(tempLine[indexTemp] == 32){
+                       printf("Space at index %d\n", indexTemp);
+                       token[index] = '\0';
+                       printf("Copying section into array\n");
+                       for(int i = 0; i < index; i++){
+                           lineSplit[counter][i] = token[i];
+                       }
+                       printf("copied and resetting token\n");
+                       for(int i = 0; i < sizeof(token); i++){
+                           printf("Resetting index: %d\n", i);
+                           if(token[i] == '\0'){
+                               i = sizeof(token);
+                           }else{
+                               token[i] = '\0';
+                           }
+                       }
+                       counter++;
+                       indexTemp++;
+                       index = 0;
+                   }else{
+                       printf("%c is not a space at index %d\n", tempLine[indexTemp], indexTemp);
+                       token[index] = tempLine[indexTemp];
+                       index++;
+                       indexTemp++;
+                   }
+               }else{
+                   printf("End of line found at index: %d\n", indexTemp);
+                   endOfLine = true;
+                   index = 0;
+                   indexTemp = 0;
+               }
+           }
+
+            printf("at place 0: %s\n", lineSplit[0]);
+           for(int i = 0; i < counter; i++){
+               printf("%s\n", lineSplit[i]);
+           }
+
+        }
+    }
+
+
+    internalCommands(lineSplit, MAX_VAR_SIZE);
+
+}
+
 int internalCommands(char *_args[MAX_ARGS], int MAX_VAR_SIZE) {
     if (strstr(_args[0], "=")) {
         internalVars(_args, MAX_VAR_SIZE);
     }
+
     if (strstr(_args[0], "print")) {
         internalPrint(_args, MAX_VAR_SIZE);
     }
 
     if (strstr(_args[0], "exit")) {
         return -1;
+    }
+
+    if (strstr(_args[0], "chdir")) {
+        changeWorkingDir(_args[1]);
+    }
+
+    if(strstr(_args[0], "script")){
+        scriptFile(_args[1], MAX_VAR_SIZE);
     }
 
     if (strstr(_args[0], "all")) {
@@ -178,6 +268,8 @@ int internalCommands(char *_args[MAX_ARGS], int MAX_VAR_SIZE) {
             printf("Variable %s, data: %s\n", vars[i].name, vars[i].data);
         }
     }
+
+    return 0;
 }
 
 int main() {
@@ -188,18 +280,18 @@ int main() {
             *prompt = "eggshell v1.0->";
     int tokenIndex;
 
-    createVariable("PATH", getenv("PATH"));
-    createVariable("USER", getenv("USER"));
-    createVariable("CWD", getenv("PWD"));
-    createVariable("HOME", getenv("HOME"));
+    createVariable("$PATH", getenv("PATH"));
+    createVariable("$USER", getenv("USER"));
+    createVariable("$CWD", getenv("PWD"));
+    createVariable("$HOME", getenv("HOME"));
     char shell[1024];
     realpath("main.c", shell);
-    createVariable("SHELL", shell);
-    createVariable("TERMINAL", ttyname(STDIN_FILENO));
-    createVariable("EXITCODE", "0");
+    createVariable("$SHELL", shell);
+    createVariable("$TERMINAL", ttyname(STDIN_FILENO));
+    createVariable("$EXITCODE", "0");
 
     VAR path;
-    path = findVariable("PATH");
+    path = findVariable("$PATH");
     if (path.data != NULL) {
         printf("%s\n", path.data);
     } else {

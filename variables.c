@@ -23,7 +23,7 @@ int editVariable(char* _name, char* _newData){
         if(strstr(vars[i].name, _name)){
             char oldData[255];
             strcpy(oldData, vars[i].data);
-            vars[i].data = _newData;
+            strcpy(vars[i].data, _newData);
 #ifdef DEBUG
             printf("DEBUG: editing variable name: %s, from %s to %s\n", vars[i].name, oldData, vars[i].data);
 #endif
