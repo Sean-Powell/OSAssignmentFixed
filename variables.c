@@ -45,6 +45,7 @@ char* getVarData(char* _varName){
 }
 
 int setVartoVar(char* _varName1, char *_varName2){
+    printf("Var 1 name: %s, var 2 name %s\n", _varName1, _varName2);
     char* varData = getVarData(_varName2);
     if(varData == NULL){
         //var 2 does not exist
