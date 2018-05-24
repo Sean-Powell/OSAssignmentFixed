@@ -10,6 +10,7 @@
 #include <errno.h>
 #include "linenoise/linenoise.h"
 #include "variables.h"
+#include "redirection.h"
 
 #define MAX_ARGS 255
 #define MAX_BUFFFER 255
@@ -17,9 +18,11 @@
 //#define DEBUG
 
 char tempLine[255];
+bool outRedirection = false;
+bool inRedirection = false;
 
 int internalCommands(char *_args[MAX_ARGS]);
-int internalScriptCommands(char args[MAX_ARGS][MAX_VAR_SIZE]);
+int externalCommands(char *_args[MAX_ARGS]);
 
 int Debug(char *_toPrint, ...) {
 #ifdef DEBUG
@@ -263,7 +266,11 @@ int scriptFile(char *path) {
             }
         }
     } else {
-        printf("Opening file failed with error num: %d\n", errno);
+        if(errno == 2){
+            printf("The file located at %s could not be located\n", path);
+        }else {
+            printf("Opening file failed with error num: %d\n", errno);
+        }
     }
 }
 
@@ -271,39 +278,36 @@ int scriptFile(char *path) {
 int internalCommands(char *_args[MAX_ARGS]) {
     if (strstr(_args[0], "=")) {
         internalVars(_args);
-    }
-
-    if (strstr(_args[0], "print")) {
+    }else if (strstr(_args[0], "print")) {
         internalPrint(_args);
-    }
-
-    if (strstr(_args[0], "exit")) {
+    }else if (strstr(_args[0], "exit")) {
         return -1;
-    }
-
-    if (strstr(_args[0], "chdir")) {
+    }else if (strstr(_args[0], "chdir")) {
         changeWorkingDir(_args[1]);
-    }
-
-    if (strstr(_args[0], "source")) {
+    }else if (strstr(_args[0], "source")) {
         scriptFile(_args[1]);
-    }
-
-    if (strstr(_args[0], "all")) {
+    }else if (strstr(_args[0], "all")) {
         int size = getVarsSize();
         VAR *vars = getVars();
         for (int i = 0; i < size; i++) {
             printf("Variable %s, data: %s\n", vars[i].name, vars[i].data);
         }
+    }else{
+        externalCommands(_args);
     }
 
     return 0;
+}
+
+int externalCommands(char*_args[MAX_ARGS]){
+
 }
 
 int main() {
     char *line, *token = NULL, *args[MAX_ARGS], *prompt = "eggshell v1.0->", buffer[MAX_BUFFFER];
     int tokenIndex;
 
+    //TODO make all internal command check for redirection first
     createVariable("$PATH", getenv("PATH"));
     createVariable("$USER", getenv("USER"));
     createVariable("$CWD", getenv("PWD"));

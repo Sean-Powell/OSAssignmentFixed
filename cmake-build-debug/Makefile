@@ -177,6 +177,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/main.c.s
 .PHONY : main.c.s
 
+redirection.o: redirection.c.o
+
+.PHONY : redirection.o
+
+# target to build an object file
+redirection.c.o:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/redirection.c.o
+.PHONY : redirection.c.o
+
+redirection.i: redirection.c.i
+
+.PHONY : redirection.i
+
+# target to preprocess a source file
+redirection.c.i:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/redirection.c.i
+.PHONY : redirection.c.i
+
+redirection.s: redirection.c.s
+
+.PHONY : redirection.s
+
+# target to generate assembly for a file
+redirection.c.s:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/redirection.c.s
+.PHONY : redirection.c.s
+
 variables.o: variables.c.o
 
 .PHONY : variables.o
@@ -219,6 +246,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... redirection.o"
+	@echo "... redirection.i"
+	@echo "... redirection.s"
 	@echo "... variables.o"
 	@echo "... variables.i"
 	@echo "... variables.s"
