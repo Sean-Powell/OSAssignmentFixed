@@ -123,6 +123,60 @@ OSAssingment/fast:
 	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/build
 .PHONY : OSAssingment/fast
 
+defenitions.o: defenitions.c.o
+
+.PHONY : defenitions.o
+
+# target to build an object file
+defenitions.c.o:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/defenitions.c.o
+.PHONY : defenitions.c.o
+
+defenitions.i: defenitions.c.i
+
+.PHONY : defenitions.i
+
+# target to preprocess a source file
+defenitions.c.i:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/defenitions.c.i
+.PHONY : defenitions.c.i
+
+defenitions.s: defenitions.c.s
+
+.PHONY : defenitions.s
+
+# target to generate assembly for a file
+defenitions.c.s:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/defenitions.c.s
+.PHONY : defenitions.c.s
+
+internalCmds.o: internalCmds.c.o
+
+.PHONY : internalCmds.o
+
+# target to build an object file
+internalCmds.c.o:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/internalCmds.c.o
+.PHONY : internalCmds.c.o
+
+internalCmds.i: internalCmds.c.i
+
+.PHONY : internalCmds.i
+
+# target to preprocess a source file
+internalCmds.c.i:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/internalCmds.c.i
+.PHONY : internalCmds.c.i
+
+internalCmds.s: internalCmds.c.s
+
+.PHONY : internalCmds.s
+
+# target to generate assembly for a file
+internalCmds.c.s:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/internalCmds.c.s
+.PHONY : internalCmds.c.s
+
 linenoise/linenoise.o: linenoise/linenoise.c.o
 
 .PHONY : linenoise/linenoise.o
@@ -240,6 +294,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... OSAssingment"
+	@echo "... defenitions.o"
+	@echo "... defenitions.i"
+	@echo "... defenitions.s"
+	@echo "... internalCmds.o"
+	@echo "... internalCmds.i"
+	@echo "... internalCmds.s"
 	@echo "... linenoise/linenoise.o"
 	@echo "... linenoise/linenoise.i"
 	@echo "... linenoise/linenoise.s"

@@ -12,21 +12,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ae1a70a-1b32-4a46-a1c0-974ac9cd7e2f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/redirection.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/redirection.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/defenitions.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/defenitions.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internalCmds.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internalCmds.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/build.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/progress.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/OSAssingment" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/OSAssingment" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/OSAssingment.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/OSAssingment.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eggshell" beforeDir="false" afterPath="$PROJECT_DIR$/eggshell" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eggshell" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/redirection.c" beforeDir="false" afterPath="$PROJECT_DIR$/redirection.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/redirection.h" beforeDir="false" afterPath="$PROJECT_DIR$/redirection.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,14 +54,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="redirection.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="redirection.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/redirection.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="60" selection-start-line="60" selection-end-line="60" selection-end-column="44" />
+            <state relative-caret-position="409">
+              <caret line="113" selection-start-line="113" selection-end-line="113" />
               <folding>
                 <element signature="e#41#65#0" expanded="true" />
-                <element signature="e#131#1257#0" />
+                <element signature="e#180#1548#0" />
+                <element signature="e#1543#1594#0" />
               </folding>
             </state>
           </provider>
@@ -64,8 +80,8 @@
       <file leaf-file-name="redirection.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/redirection.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="100" selection-start-line="10" selection-start-column="100" selection-end-line="10" selection-end-column="100" />
+            <state relative-caret-position="180">
+              <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
               <folding>
                 <element signature="e#112#132#0" expanded="true" />
               </folding>
@@ -76,26 +92,59 @@
       <file leaf-file-name="output.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/output.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            <state>
+              <caret column="12" selection-start-column="12" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.c">
+      <file leaf-file-name="internalCmds.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/internalCmds.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="309" column="64" selection-start-line="309" selection-start-column="64" selection-end-line="309" selection-end-column="64" />
+            <state relative-caret-position="165">
+              <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
               <folding>
-                <element signature="e#39#57#0" expanded="true" />
-                <element signature="e#432#514#0" />
-                <element signature="e#516#2851#0" />
-                <element signature="e#2853#4608#0" />
-                <element signature="e#4610#4985#0" />
-                <element signature="e#4924#8126#0" />
-                <element signature="e#8063#8717#0" />
+                <element signature="e#354#2690#0" />
+                <element signature="e#2692#4447#0" />
+                <element signature="e#4986#8207#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="internalCmds.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/internalCmds.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="defenitions.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/defenitions.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="77" />
+              <folding>
+                <element signature="e#147#171#0" />
+                <element signature="e#195#220#0" />
+                <element signature="e#245#265#0" />
+                <element signature="e#285#312#0" />
+                <element signature="e#321#358#0" />
+                <element signature="e#377#432#0" />
+                <element signature="e#434#489#0" />
+                <element signature="e#491#546#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="defenitions.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/defenitions.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="77" selection-start-line="10" selection-start-column="77" selection-end-line="10" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -104,19 +153,10 @@
         <entry file="file://$PROJECT_DIR$/variables.c">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+              <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="variables.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/variables.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -135,9 +175,13 @@
         <option value="$PROJECT_DIR$/Redirection.c" />
         <option value="$PROJECT_DIR$/Redirection.h" />
         <option value="$PROJECT_DIR$/output.txt" />
-        <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/internalCmds.h" />
         <option value="$PROJECT_DIR$/redirection.c" />
         <option value="$PROJECT_DIR$/redirection.h" />
+        <option value="$PROJECT_DIR$/defenitions.c" />
+        <option value="$PROJECT_DIR$/internalCmds.c" />
+        <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/defenitions.h" />
       </list>
     </option>
   </component>
@@ -224,7 +268,7 @@
       <workItem from="1525720126075" duration="131000" />
       <workItem from="1526810675904" duration="2000" />
       <workItem from="1526821221298" duration="6187000" />
-      <workItem from="1527159376940" duration="7510000" />
+      <workItem from="1527159376940" duration="11261000" />
     </task>
     <task id="LOCAL-00001" summary="Linenoise dependecy">
       <created>1525697682863</created>
@@ -240,11 +284,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525720182926</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added basic detection of redirection and a method for output redirection to a file both overwriting and appending options.">
+      <created>1527166971523</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1527166971523</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40748000" />
+    <option name="totallyTimeSpent" value="44499000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="960" height="1061" extended-state="6" />
@@ -282,7 +333,8 @@
     </ignored-roots>
     <MESSAGE value="Linenoise dependecy" />
     <MESSAGE value="Added some non functional print statements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some non functional print statements" />
+    <MESSAGE value="Added basic detection of redirection and a method for output redirection to a file both overwriting and appending options." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added basic detection of redirection and a method for output redirection to a file both overwriting and appending options." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -292,13 +344,8 @@
           <line>18</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>148</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="22" />
+      <option name="time" value="26" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
@@ -372,34 +419,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/gcc/x86_64-linux-gnu/5/include/stdbool.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="54" column="30" lean-forward="true" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
@@ -613,7 +632,7 @@
     <entry file="file://$PROJECT_DIR$/variables.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -622,31 +641,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/output.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
+    <entry file="file://$PROJECT_DIR$/internalCmds.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="309" column="64" selection-start-line="309" selection-start-column="64" selection-end-line="309" selection-end-column="64" />
-          <folding>
-            <element signature="e#39#57#0" expanded="true" />
-            <element signature="e#432#514#0" />
-            <element signature="e#516#2851#0" />
-            <element signature="e#2853#4608#0" />
-            <element signature="e#4610#4985#0" />
-            <element signature="e#4924#8126#0" />
-            <element signature="e#8063#8717#0" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/redirection.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="100" selection-start-line="10" selection-start-column="100" selection-end-line="10" selection-end-column="100" />
+        <state relative-caret-position="180">
+          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
           <folding>
             <element signature="e#112#132#0" expanded="true" />
           </folding>
@@ -655,12 +665,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/redirection.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="60" selection-start-line="60" selection-end-line="60" selection-end-column="44" />
+        <state relative-caret-position="409">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
           <folding>
             <element signature="e#41#65#0" expanded="true" />
-            <element signature="e#131#1257#0" />
+            <element signature="e#180#1548#0" />
+            <element signature="e#1543#1594#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/internalCmds.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding>
+            <element signature="e#354#2690#0" />
+            <element signature="e#2692#4447#0" />
+            <element signature="e#4986#8207#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/defenitions.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="77" />
+          <folding>
+            <element signature="e#147#171#0" />
+            <element signature="e#195#220#0" />
+            <element signature="e#245#265#0" />
+            <element signature="e#285#312#0" />
+            <element signature="e#321#358#0" />
+            <element signature="e#377#432#0" />
+            <element signature="e#434#489#0" />
+            <element signature="e#491#546#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/defenitions.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="77" selection-start-line="10" selection-start-column="77" selection-end-line="10" selection-end-column="77" />
         </state>
       </provider>
     </entry>

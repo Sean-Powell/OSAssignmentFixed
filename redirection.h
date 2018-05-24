@@ -8,7 +8,8 @@
 #include <stdbool.h>
 #include "variables.h"
 
-int outputRedirection(const char* _target, char* _string, VAR* _vars, int _numOfVars, bool _append);
+int outputRedirection(char* _string, VAR* _vars, int _numOfVars, bool _append);
 int checkForRedirection(const char* _input);
+int getTarget(char* _target);
 
 #endif //OSASSINGMENT_REDIRECTION_H

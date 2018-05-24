@@ -6,7 +6,12 @@ CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o: ../linenoise/linenoise.h
 
 CMakeFiles/OSAssingment.dir/main.c.o: ../linenoise/linenoise.h
 CMakeFiles/OSAssingment.dir/main.c.o: ../main.c
+CMakeFiles/OSAssingment.dir/main.c.o: ../redirection.h
 CMakeFiles/OSAssingment.dir/main.c.o: ../variables.h
+
+CMakeFiles/OSAssingment.dir/redirection.c.o: ../redirection.c
+CMakeFiles/OSAssingment.dir/redirection.c.o: ../redirection.h
+CMakeFiles/OSAssingment.dir/redirection.c.o: ../variables.h
 
 CMakeFiles/OSAssingment.dir/variables.c.o: ../variables.c
 CMakeFiles/OSAssingment.dir/variables.c.o: ../variables.h

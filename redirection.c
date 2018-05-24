@@ -9,7 +9,9 @@
 #include <stdbool.h>
 #include "variables.h"
 
-int outputRedirection(const char *_target, char *_string, VAR *_vars, int _numOfVars, bool _append) {
+char* targetForRedirection;
+
+int outputRedirection(char *_string, VAR *_vars, int _numOfVars, bool _append) {
     char *output;
     size_t size = strlen(_string);
     int offset = 0;
@@ -48,9 +50,9 @@ int outputRedirection(const char *_target, char *_string, VAR *_vars, int _numOf
     }
     FILE *file;
     if(_append) {
-        file = fopen(_target, "a+");
+        file = fopen(targetForRedirection, "a+");
     }else{
-        file = fopen(_target, "w");
+        file = fopen(targetForRedirection, "w");
     }
     output[i + offset]='\0';
     fwrite(output, sizeof(char), strlen(output), file);
@@ -83,4 +85,32 @@ int checkForRedirection(const char* _input){
     }else{//ERROR
         return -3;
     }
+}
+
+int getTarget(char* _target){
+    int indexStart = -1;
+    for(int i = 0; i < strlen(_target); i++){
+        if(_target[i] == '>'){
+            if(_target[i + 1] == '>') {
+                indexStart = i + 2;
+            }else{
+                indexStart = i;
+            }
+            i = (int) strlen(_target);
+        }else if(_target[i] == '<'){
+            if(_target[i + 2] == '<'){
+                indexStart = i + 3;
+            }else{
+                indexStart = i;
+            }
+            i = (int) strlen(_target);
+        }
+    }
+
+    targetForRedirection = malloc((strlen(_target) - indexStart + 1) * sizeof(char));
+    for(int i = indexStart; i < strlen(_target); i++){
+        targetForRedirection[i] = _target[i + indexStart];
+    }
+
+    targetForRedirection[strlen(_target) - indexStart + 1] = '\0';
 }
