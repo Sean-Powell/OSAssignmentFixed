@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <errno.h>
+#include <wait.h>
 #include "linenoise/linenoise.h"
 #include "variables.h"
 #include "redirection.h"
@@ -70,7 +71,7 @@ int internalVars(char **_args) {
             var2name[j] = _args[0][i];
             i++;
         }
-        var2name[i] = '\0';
+        var2name[i - strlen(var1name) - 1] = '\0';
 
         int returned = setVartoVar(var1name, var2name);
         if (returned == 0) {
@@ -105,7 +106,7 @@ int internalVars(char **_args) {
             data[j] = temp[i];
             i++;
         }
-        data[i] = '\0';
+        data[i - strlen(name) - 1] = '\0';
         printf("DEBUG: data ends at %d\n", i);
         printf("DEBUG: creating variable name: %s, data: %s\n", name, data);
         VAR *vars = getVars();
@@ -382,6 +383,9 @@ int internalCommands(char *_args[MAX_ARGS]) {
                 varsForRedirect[1] = forRedirect2;
                 printf("Vars added to the array\n");
                 outputRedirection("Variable %, data %\n", varsForRedirect, 2, append, file);
+                free(varsForRedirect);
+                free(forRedirect2.data);
+                free(forRedirect1.data);
             }
             fclose(file);
         } else {
@@ -397,22 +401,37 @@ int internalCommands(char *_args[MAX_ARGS]) {
 }
 
 int externalCommands(char *_args[MAX_ARGS]) {
-    char * path = getVarData("$PATH");
-    printf("%s\n", path);
+    char * path = getVarData("$PATH");;
     char*paths[MAX_ARGS]; // unlikely to be more that 255 paths
     char*token;
     token = strtok(path, ":");
-    int tokenIndex, returnValue;
+    int tokenIndex, returnValue, status;
     for (tokenIndex = 0; token != NULL && tokenIndex < (MAX_ARGS - 1); tokenIndex++) {
         paths[tokenIndex] = malloc((strlen(token) + 1) * sizeof(char));
         strcpy(paths[tokenIndex], token);
         token = strtok(NULL, ":");
     }
 
-    for(int i = 0; i < tokenIndex; i++){
-        printf("Path %d: %s\n", i, paths[i]);
-        returnValue = execv(paths[i], _args);
-        printf("Resulted in the returnValue: %d\n", returnValue);
+    pid_t pid = fork();
+    if(pid == 0) {//child process
+        printf("Result of running %s:\n", _args[0]);
+        int i;
+        for (i = 0; i < tokenIndex && i != -1; i++) {
+            char* command = malloc((strlen(_args[0]) + strlen(paths[i]) + 1) * sizeof(char));
+            strcat(command, paths[i]);
+            strcat(command, "/");
+            strcat(command, _args[0]);
+            returnValue = execv(command, _args);
+            if(returnValue != -1){
+                i = -1;
+            }
+            free(command);
+        }
+        if(i != -1){
+            printf("The command could not be run\n");
+        }
+    }else{//otherwise waits for the child
+        wait(&status);
     }
 }
 
