@@ -153,28 +153,28 @@ CMakeFiles/OSAssingment.dir/redirection.c.o.provides: CMakeFiles/OSAssingment.di
 CMakeFiles/OSAssingment.dir/redirection.c.o.provides.build: CMakeFiles/OSAssingment.dir/redirection.c.o
 
 
-CMakeFiles/OSAssingment.dir/defenitions.c.o: CMakeFiles/OSAssingment.dir/flags.make
-CMakeFiles/OSAssingment.dir/defenitions.c.o: ../defenitions.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/OSAssingment.dir/defenitions.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OSAssingment.dir/defenitions.c.o   -c /home/sean/CLionProjects/OSAssignmentFixed/defenitions.c
+CMakeFiles/OSAssingment.dir/Signals.c.o: CMakeFiles/OSAssingment.dir/flags.make
+CMakeFiles/OSAssingment.dir/Signals.c.o: ../Signals.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/OSAssingment.dir/Signals.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OSAssingment.dir/Signals.c.o   -c /home/sean/CLionProjects/OSAssignmentFixed/Signals.c
 
-CMakeFiles/OSAssingment.dir/defenitions.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/OSAssingment.dir/defenitions.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sean/CLionProjects/OSAssignmentFixed/defenitions.c > CMakeFiles/OSAssingment.dir/defenitions.c.i
+CMakeFiles/OSAssingment.dir/Signals.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/OSAssingment.dir/Signals.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sean/CLionProjects/OSAssignmentFixed/Signals.c > CMakeFiles/OSAssingment.dir/Signals.c.i
 
-CMakeFiles/OSAssingment.dir/defenitions.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OSAssingment.dir/defenitions.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sean/CLionProjects/OSAssignmentFixed/defenitions.c -o CMakeFiles/OSAssingment.dir/defenitions.c.s
+CMakeFiles/OSAssingment.dir/Signals.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OSAssingment.dir/Signals.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sean/CLionProjects/OSAssignmentFixed/Signals.c -o CMakeFiles/OSAssingment.dir/Signals.c.s
 
-CMakeFiles/OSAssingment.dir/defenitions.c.o.requires:
+CMakeFiles/OSAssingment.dir/Signals.c.o.requires:
 
-.PHONY : CMakeFiles/OSAssingment.dir/defenitions.c.o.requires
+.PHONY : CMakeFiles/OSAssingment.dir/Signals.c.o.requires
 
-CMakeFiles/OSAssingment.dir/defenitions.c.o.provides: CMakeFiles/OSAssingment.dir/defenitions.c.o.requires
-	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/defenitions.c.o.provides.build
-.PHONY : CMakeFiles/OSAssingment.dir/defenitions.c.o.provides
+CMakeFiles/OSAssingment.dir/Signals.c.o.provides: CMakeFiles/OSAssingment.dir/Signals.c.o.requires
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/Signals.c.o.provides.build
+.PHONY : CMakeFiles/OSAssingment.dir/Signals.c.o.provides
 
-CMakeFiles/OSAssingment.dir/defenitions.c.o.provides.build: CMakeFiles/OSAssingment.dir/defenitions.c.o
+CMakeFiles/OSAssingment.dir/Signals.c.o.provides.build: CMakeFiles/OSAssingment.dir/Signals.c.o
 
 
 # Object files for target OSAssingment
@@ -183,7 +183,7 @@ OSAssingment_OBJECTS = \
 "CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o" \
 "CMakeFiles/OSAssingment.dir/variables.c.o" \
 "CMakeFiles/OSAssingment.dir/redirection.c.o" \
-"CMakeFiles/OSAssingment.dir/defenitions.c.o"
+"CMakeFiles/OSAssingment.dir/Signals.c.o"
 
 # External object files for target OSAssingment
 OSAssingment_EXTERNAL_OBJECTS =
@@ -192,7 +192,7 @@ OSAssingment: CMakeFiles/OSAssingment.dir/main.c.o
 OSAssingment: CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o
 OSAssingment: CMakeFiles/OSAssingment.dir/variables.c.o
 OSAssingment: CMakeFiles/OSAssingment.dir/redirection.c.o
-OSAssingment: CMakeFiles/OSAssingment.dir/defenitions.c.o
+OSAssingment: CMakeFiles/OSAssingment.dir/Signals.c.o
 OSAssingment: CMakeFiles/OSAssingment.dir/build.make
 OSAssingment: CMakeFiles/OSAssingment.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sean/CLionProjects/OSAssignmentFixed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable OSAssingment"
@@ -207,7 +207,7 @@ CMakeFiles/OSAssingment.dir/requires: CMakeFiles/OSAssingment.dir/main.c.o.requi
 CMakeFiles/OSAssingment.dir/requires: CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o.requires
 CMakeFiles/OSAssingment.dir/requires: CMakeFiles/OSAssingment.dir/variables.c.o.requires
 CMakeFiles/OSAssingment.dir/requires: CMakeFiles/OSAssingment.dir/redirection.c.o.requires
-CMakeFiles/OSAssingment.dir/requires: CMakeFiles/OSAssingment.dir/defenitions.c.o.requires
+CMakeFiles/OSAssingment.dir/requires: CMakeFiles/OSAssingment.dir/Signals.c.o.requires
 
 .PHONY : CMakeFiles/OSAssingment.dir/requires
 

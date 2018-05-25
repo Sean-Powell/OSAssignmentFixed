@@ -13,11 +13,13 @@
 #include "variables.h"
 #include "redirection.h"
 #include "defenitions.h"
+#include "Signals.h"
 
 bool append = false;
 bool inFile = false;
 bool outRedirect = false;
 bool inRedirect = false;
+bool exitLoop = false;
 
 char tempLine[255];
 
@@ -352,6 +354,7 @@ int internalCommands(char *_args[MAX_ARGS]) {
         internalPrint(_args);
     } else if (strstr(_args[0], "exit")) {
         printf("exit:\n");
+        exitLoop = true;
         return -1;
     } else if (strstr(_args[0], "chdir")) {
         printf("chdir:\n");
@@ -401,9 +404,9 @@ int internalCommands(char *_args[MAX_ARGS]) {
 }
 
 int externalCommands(char *_args[MAX_ARGS]) {
-    char * path = getVarData("$PATH");;
-    char*paths[MAX_ARGS]; // unlikely to be more that 255 paths
-    char*token;
+    char *path = getVarData("$PATH");;
+    char *paths[MAX_ARGS]; // unlikely to be more that 255 paths
+    char *token;
     token = strtok(path, ":");
     int tokenIndex, returnValue, status;
     for (tokenIndex = 0; token != NULL && tokenIndex < (MAX_ARGS - 1); tokenIndex++) {
@@ -413,32 +416,43 @@ int externalCommands(char *_args[MAX_ARGS]) {
     }
 
     pid_t pid = fork();
-    if(pid == 0) {//child process
+    printf("parent pid is %d, and child pid is: %d\n", getppid(), pid);
+    pushToStack(pid);
+    if (pid == 0) {//child process
         printf("Result of running %s:\n", _args[0]);
         int i;
         for (i = 0; i < tokenIndex && i != -1; i++) {
-            char* command = malloc((strlen(_args[0]) + strlen(paths[i]) + 1) * sizeof(char));
+            char *command = malloc((strlen(_args[0]) + strlen(paths[i]) + 1) * sizeof(char));
             strcat(command, paths[i]);
             strcat(command, "/");
             strcat(command, _args[0]);
             returnValue = execv(command, _args);
-            if(returnValue != -1){
+            if (returnValue != -1) {
                 i = -1;
             }
             free(command);
         }
-        if(i != -1){
+        if (i != -1) {
             printf("The command could not be run\n");
         }
-    }else{//otherwise waits for the child
+    } else {//otherwise waits for the child
         wait(&status);
     }
+    pid_t tempPid;
+    while((tempPid = popFromStack()) != pid);
+    pushToStack(tempPid);
 }
+
+struct sigaction sigHandler;
 
 int main() {
     char *line, *token = NULL, *args[MAX_ARGS], *prompt = "eggshell v1.0->", buffer[MAX_BUFFFER];
     int tokenIndex;
-
+    memset(&sigHandler, 0, sizeof(sigHandler));
+    sigHandler.sa_handler = signalManager;
+    sigaction(SIGINT, &sigHandler, NULL);
+    sigaction(SIGCONT, &sigHandler, NULL);
+    sigaction(SIGTSTP, &sigHandler, NULL);
 
     //TODO make all internal command check for redirection first
     createVariable("$PATH", getenv("PATH"));
@@ -451,83 +465,83 @@ int main() {
     createVariable("$TERMINAL", ttyname(STDIN_FILENO));
     createVariable("$EXITCODE", "0");
 
-    while ((line = linenoise(prompt)) != NULL) {
-        printf("Checking for redirection\n");
-        int returnValue = checkForRedirection(line);
-        printf("Redirection returned: %d\n", returnValue);
-        //TODO handle inRedirect
-        token = strtok(line, " ");
-        for (tokenIndex = 0; token != NULL && tokenIndex < (MAX_ARGS - 1); tokenIndex++) {
-            printf("Token %d: %s\n", tokenIndex, token);
-            args[tokenIndex] = token;
-            token = strtok(NULL, " ");
-        }
-        args[tokenIndex] = NULL;
-        printf("All tokens found:\n");
-        switch (returnValue) {
-            case 1:
-                outRedirect = true;
-                for (int i = 0; i < tokenIndex; i++) {
-                    if (strstr(args[i], ">")) {
-                        setTarget(args[i + 1]);
-                        printf("Target is: %s\n", args[i + 1]);
-                    }else{
-                        printf("%s is not the target\n", args[i]);
+    while (!exitLoop) {
+        while ((line = linenoise(prompt)) != NULL) {
+            printf("Checking for redirection\n");
+            int returnValue = checkForRedirection(line);
+            printf("Redirection returned: %d\n", returnValue);
+            //TODO handle inRedirect
+            token = strtok(line, " ");
+            for (tokenIndex = 0; token != NULL && tokenIndex < (MAX_ARGS - 1); tokenIndex++) {
+                printf("Token %d: %s\n", tokenIndex, token);
+                args[tokenIndex] = token;
+                token = strtok(NULL, " ");
+            }
+            args[tokenIndex] = NULL;
+            printf("All tokens found:\n");
+            switch (returnValue) {
+                case 1:
+                    outRedirect = true;
+                    for (int i = 0; i < tokenIndex; i++) {
+                        if (strstr(args[i], ">")) {
+                            setTarget(args[i + 1]);
+                            printf("Target is: %s\n", args[i + 1]);
+                        } else {
+                            printf("%s is not the target\n", args[i]);
+                        }
                     }
-                }
-                break;
-            case 2:
-                outRedirect = true;
-                append = true;
-                for (int i = 0; i < tokenIndex; i++) {
-                    if (strstr(args[i], ">>")) {
-                        printf("Target is: %s\n", args[i + 1]);
-                        setTarget(args[i + 1]);
-                    }else{
-                        printf("%s is not the target\n", args[i]);
+                    break;
+                case 2:
+                    outRedirect = true;
+                    append = true;
+                    for (int i = 0; i < tokenIndex; i++) {
+                        if (strstr(args[i], ">>")) {
+                            printf("Target is: %s\n", args[i + 1]);
+                            setTarget(args[i + 1]);
+                        } else {
+                            printf("%s is not the target\n", args[i]);
+                        }
                     }
-                }
+                    break;
+                case 0:
+                    //there is no redirection needed.
+                    break;
+                case -1:
+                    inRedirect = true;
+                    inFile = true;
+                    break;
+                case -2:
+                    inRedirect = true;
+                    break;
+                default:
+                    printf("The command has an error in it");
+                    break;
+            }
+            printf("Booleans set: inFile: %d, inRedirect: %d, append: %d, outRedirect: %d\n", inFile, inRedirect,
+                   append,
+                   outRedirect);
+            returnValue = internalCommands(args);
+            if (returnValue == -1) {
                 break;
-            case 0:
-                //there is no redirection needed.
-                break;
-            case -1:
-                inRedirect = true;
-                inFile = true;
-                break;
-            case -2:
-                inRedirect = true;
-                break;
-            default:
-                printf("The command has an error in it");
-                break;
-        }
-        printf("Booleans set: inFile: %d, inRedirect: %d, append: %d, outRedirect: %d\n", inFile, inRedirect, append,
-               outRedirect);
-        returnValue = internalCommands(args);
-        if (returnValue == -1) {
-            break;
-        } else {
-            //TODO fix exit codes they are currently broken
-            Debug("DEBUG: changing exitcode\n");
-            size_t length = (size_t) snprintf(NULL, 0, "%d", returnValue);
-            char *src = malloc(sizeof(char) * (length + 1));
-            snprintf(src, length + 1, "%d", returnValue);
-            editVariable("EXITCODE", src);
-        }
+            } else {
+                //TODO fix exit codes they are currently broken
+                Debug("DEBUG: changing exitcode\n");
+                size_t length = (size_t) snprintf(NULL, 0, "%d", returnValue);
+                char *src = malloc(sizeof(char) * (length + 1));
+                snprintf(src, length + 1, "%d", returnValue);
+                editVariable("EXITCODE", src);
+            }
 
-        printf("freeing line\n");
-        // Free allocated memory
-        free(line);
+            printf("freeing line\n");
+            // Free allocated memory
+            free(line);
 
-        //reset variables for redirection
-        printf("Resetting variables back to false:\n");
-        append = false;
-        outRedirect = false;
-        inRedirect = false;
-        inFile = false;
-//        for(int i = 0; i < strlen(target); i++){
-//            target[i] = '\0';
-//        }
+            //reset variables for redirection
+            printf("Resetting variables back to false:\n");
+            append = false;
+            outRedirect = false;
+            inRedirect = false;
+            inFile = false;
+        }
     }
 }

@@ -123,32 +123,32 @@ OSAssingment/fast:
 	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/build
 .PHONY : OSAssingment/fast
 
-defenitions.o: defenitions.c.o
+Signals.o: Signals.c.o
 
-.PHONY : defenitions.o
+.PHONY : Signals.o
 
 # target to build an object file
-defenitions.c.o:
-	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/defenitions.c.o
-.PHONY : defenitions.c.o
+Signals.c.o:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/Signals.c.o
+.PHONY : Signals.c.o
 
-defenitions.i: defenitions.c.i
+Signals.i: Signals.c.i
 
-.PHONY : defenitions.i
+.PHONY : Signals.i
 
 # target to preprocess a source file
-defenitions.c.i:
-	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/defenitions.c.i
-.PHONY : defenitions.c.i
+Signals.c.i:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/Signals.c.i
+.PHONY : Signals.c.i
 
-defenitions.s: defenitions.c.s
+Signals.s: Signals.c.s
 
-.PHONY : defenitions.s
+.PHONY : Signals.s
 
 # target to generate assembly for a file
-defenitions.c.s:
-	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/defenitions.c.s
-.PHONY : defenitions.c.s
+Signals.c.s:
+	$(MAKE) -f CMakeFiles/OSAssingment.dir/build.make CMakeFiles/OSAssingment.dir/Signals.c.s
+.PHONY : Signals.c.s
 
 linenoise/linenoise.o: linenoise/linenoise.c.o
 
@@ -267,9 +267,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... OSAssingment"
-	@echo "... defenitions.o"
-	@echo "... defenitions.i"
-	@echo "... defenitions.s"
+	@echo "... Signals.o"
+	@echo "... Signals.i"
+	@echo "... Signals.s"
 	@echo "... linenoise/linenoise.o"
 	@echo "... linenoise/linenoise.i"
 	@echo "... linenoise/linenoise.s"

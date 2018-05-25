@@ -78,7 +78,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/defenitions.c">
+		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/Signals.c">
+			<Option target="OSAssingment"/>
+		</Unit>
+		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/Signals.h">
 			<Option target="OSAssingment"/>
 		</Unit>
 		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/defenitions.h">

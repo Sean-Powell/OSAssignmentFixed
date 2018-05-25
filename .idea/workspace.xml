@@ -12,24 +12,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ae1a70a-1b32-4a46-a1c0-974ac9cd7e2f" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Signals.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Signals.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/build.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/cmake_clean.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OSAssingment.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/OSAssingment.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/OSAssingment.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defenitions.c" beforeDir="false" afterPath="$PROJECT_DIR$/defenitions.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defenitions.h" beforeDir="false" afterPath="$PROJECT_DIR$/defenitions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internalCmds.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internalCmds.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/defenitions.c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/redirection.c" beforeDir="false" afterPath="$PROJECT_DIR$/redirection.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/redirection.h" beforeDir="false" afterPath="$PROJECT_DIR$/redirection.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,20 +36,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="414" column="65" selection-start-line="414" selection-start-column="65" selection-end-line="414" selection-end-column="65" />
+            <state relative-caret-position="128">
+              <caret line="471" column="62" lean-forward="true" selection-start-line="471" selection-start-column="62" selection-end-line="471" selection-end-column="62" />
               <folding>
                 <element signature="e#39#57#0" expanded="true" />
                 <element signature="e#440#477#0" />
@@ -64,21 +49,38 @@
                 <element signature="e#3075#7049#0" />
                 <element signature="e#4532#5072#0" />
                 <element signature="e#5074#8295#0" />
+                <element signature="e#10741#12584#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="print.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/print.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="Signals.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Signals.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="53" column="25" lean-forward="true" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
+              <folding>
+                <element signature="e#41#65#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Signals.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Signals.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="output.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/output.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="36" lean-forward="true" selection-start-column="36" selection-end-column="36" />
+            <state relative-caret-position="135">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -86,7 +88,7 @@
       <file leaf-file-name="redirection.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/redirection.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="699">
+            <state relative-caret-position="633">
               <caret line="52" column="43" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
               <folding>
                 <element signature="e#41#65#0" expanded="true" />
@@ -101,19 +103,10 @@
         <entry file="file://$PROJECT_DIR$/redirection.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
               <folding>
                 <element signature="e#112#132#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="defenitions.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/defenitions.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -157,8 +150,10 @@
         <option value="$PROJECT_DIR$/defenitions.c" />
         <option value="$PROJECT_DIR$/defenitions.h" />
         <option value="$PROJECT_DIR$/redirection.h" />
-        <option value="$PROJECT_DIR$/output.txt" />
         <option value="$PROJECT_DIR$/redirection.c" />
+        <option value="$PROJECT_DIR$/output.txt" />
+        <option value="$PROJECT_DIR$/Signals.h" />
+        <option value="$PROJECT_DIR$/Signals.c" />
         <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
@@ -174,8 +169,8 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1920" />
-    <option name="width" value="960" />
-    <option name="height" value="1061" />
+    <option name="width" value="1920" />
+    <option name="height" value="531" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -247,7 +242,7 @@
       <workItem from="1526810675904" duration="2000" />
       <workItem from="1526821221298" duration="6187000" />
       <workItem from="1527159376940" duration="11261000" />
-      <workItem from="1527242840315" duration="9055000" />
+      <workItem from="1527242840315" duration="17618000" />
     </task>
     <task id="LOCAL-00001" summary="Linenoise dependecy">
       <created>1525697682863</created>
@@ -270,17 +265,31 @@
       <option name="project" value="LOCAL" />
       <updated>1527166971523</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Further improved redirection and added the begins of being able to run external commands">
+      <created>1527256852185</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1527256852185</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Finalized the ability to run external commands">
+      <created>1527258870872</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1527258870872</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53554000" />
+    <option name="totallyTimeSpent" value="62117000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="531" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09707724" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.09707724" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.32883817" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -313,7 +322,9 @@
     <MESSAGE value="Linenoise dependecy" />
     <MESSAGE value="Added some non functional print statements" />
     <MESSAGE value="Added basic detection of redirection and a method for output redirection to a file both overwriting and appending options." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added basic detection of redirection and a method for output redirection to a file both overwriting and appending options." />
+    <MESSAGE value="Further improved redirection and added the begins of being able to run external commands" />
+    <MESSAGE value="Finalized the ability to run external commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalized the ability to run external commands" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -398,20 +409,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="69" column="55" selection-start-line="69" selection-start-column="55" selection-end-line="69" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -582,20 +579,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/defenitions.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/defenitions.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/internalCmds.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -630,29 +613,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="36" lean-forward="true" selection-start-column="36" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/print.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/redirection.h">
+    <entry file="file://$PROJECT_DIR$/defenitions.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-          <folding>
-            <element signature="e#112#132#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/defenitions.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/redirection.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="699">
+        <state relative-caret-position="633">
           <caret line="52" column="43" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
           <folding>
             <element signature="e#41#65#0" expanded="true" />
@@ -662,10 +649,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/redirection.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+          <folding>
+            <element signature="e#112#132#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Signals.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Signals.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="53" column="25" lean-forward="true" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
+          <folding>
+            <element signature="e#41#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="414" column="65" selection-start-line="414" selection-start-column="65" selection-end-line="414" selection-end-column="65" />
+        <state relative-caret-position="128">
+          <caret line="471" column="62" lean-forward="true" selection-start-line="471" selection-start-column="62" selection-end-line="471" selection-end-column="62" />
           <folding>
             <element signature="e#39#57#0" expanded="true" />
             <element signature="e#440#477#0" />
@@ -674,6 +688,7 @@
             <element signature="e#3075#7049#0" />
             <element signature="e#4532#5072#0" />
             <element signature="e#5074#8295#0" />
+            <element signature="e#10741#12584#0" />
           </folding>
         </state>
       </provider>

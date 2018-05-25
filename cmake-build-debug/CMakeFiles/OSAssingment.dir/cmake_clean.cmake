@@ -3,7 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o"
   "CMakeFiles/OSAssingment.dir/variables.c.o"
   "CMakeFiles/OSAssingment.dir/redirection.c.o"
-  "CMakeFiles/OSAssingment.dir/defenitions.c.o"
+  "CMakeFiles/OSAssingment.dir/Signals.c.o"
   "OSAssingment.pdb"
   "OSAssingment"
 )
