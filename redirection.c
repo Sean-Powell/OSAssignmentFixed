@@ -11,7 +11,7 @@
 
 char* targetForRedirection;
 
-int outputRedirection(char *_string, VAR *_vars, int _numOfVars, bool _append) {
+int outputRedirection(char *_string, VAR *_vars, int _numOfVars, bool _append, FILE* file) {
     char *output;
     size_t size = strlen(_string);
     int offset = 0;
@@ -48,15 +48,10 @@ int outputRedirection(char *_string, VAR *_vars, int _numOfVars, bool _append) {
     } else {
         output = _string;
     }
-    FILE *file;
-    if(_append) {
-        file = fopen(targetForRedirection, "a+");
-    }else{
-        file = fopen(targetForRedirection, "w");
-    }
+
     output[i + offset]='\0';
+    printf("Writing %s to file\n", output);
     fwrite(output, sizeof(char), strlen(output), file);
-    fclose(file);
     return 0;
 }
 
@@ -64,13 +59,16 @@ int checkForRedirection(const char* _input){
     int numOfForward = 0;
     int numOfBackwards = 0;
     int i = 0;
-    while(_input[i] != '\0'){
+    while(i < strlen(_input)){
+        printf("%c is being checked\n", _input[i]);
         if(_input[i] == '>'){
             numOfForward++;
         }else if(_input[i] == '<'){
             numOfBackwards++;
         }
+        i++;
     }
+    printf("Num of >: %d, Num of <: %d\n", numOfForward, numOfBackwards);
 
     if(numOfBackwards == 1 && numOfForward == 0){//input from file
         return -1;
@@ -87,30 +85,14 @@ int checkForRedirection(const char* _input){
     }
 }
 
-int getTarget(char* _target){
-    int indexStart = -1;
-    for(int i = 0; i < strlen(_target); i++){
-        if(_target[i] == '>'){
-            if(_target[i + 1] == '>') {
-                indexStart = i + 2;
-            }else{
-                indexStart = i;
-            }
-            i = (int) strlen(_target);
-        }else if(_target[i] == '<'){
-            if(_target[i + 2] == '<'){
-                indexStart = i + 3;
-            }else{
-                indexStart = i;
-            }
-            i = (int) strlen(_target);
-        }
-    }
+char* getTarget(){
+    return targetForRedirection;
+}
 
-    targetForRedirection = malloc((strlen(_target) - indexStart + 1) * sizeof(char));
-    for(int i = indexStart; i < strlen(_target); i++){
-        targetForRedirection[i] = _target[i + indexStart];
-    }
-
-    targetForRedirection[strlen(_target) - indexStart + 1] = '\0';
+int setTarget(char* _target){
+    printf("Setting target to %s\n", _target);
+    targetForRedirection = malloc((strlen(_target))* sizeof(char));
+    strcpy(targetForRedirection, _target);
+    printf("Target set to %s\n", _target);
+    return 0;
 }

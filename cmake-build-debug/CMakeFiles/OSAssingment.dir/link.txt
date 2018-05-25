@@ -1,1 +1,1 @@
-/usr/bin/cc -g   CMakeFiles/OSAssingment.dir/main.c.o CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o CMakeFiles/OSAssingment.dir/variables.c.o CMakeFiles/OSAssingment.dir/redirection.c.o CMakeFiles/OSAssingment.dir/internalCmds.c.o CMakeFiles/OSAssingment.dir/defenitions.c.o  -o OSAssingment 
+/usr/bin/cc -g   CMakeFiles/OSAssingment.dir/main.c.o CMakeFiles/OSAssingment.dir/linenoise/linenoise.c.o CMakeFiles/OSAssingment.dir/variables.c.o CMakeFiles/OSAssingment.dir/redirection.c.o CMakeFiles/OSAssingment.dir/defenitions.c.o  -o OSAssingment 

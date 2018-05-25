@@ -84,12 +84,6 @@
 		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/defenitions.h">
 			<Option target="OSAssingment"/>
 		</Unit>
-		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/internalCmds.c">
-			<Option target="OSAssingment"/>
-		</Unit>
-		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/internalCmds.h">
-			<Option target="OSAssingment"/>
-		</Unit>
 		<Unit filename="/home/sean/CLionProjects/OSAssignmentFixed/linenoise/linenoise.c">
 			<Option target="OSAssingment"/>
 		</Unit>
