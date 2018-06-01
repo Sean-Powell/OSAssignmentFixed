@@ -5,7 +5,6 @@
 //
 // Created by sean on 10/05/18.
 //
-#define DEBUG
 
 VAR *vars;
 int varsSize = 0;
@@ -24,9 +23,6 @@ int editVariable(char* _name, char* _newData){
             char oldData[255];
             strcpy(oldData, vars[i].data);
             strcpy(vars[i].data, _newData);
-#ifdef DEBUG
-            printf("DEBUG: editing variable name: %s, from %s to %s\n", vars[i].name, oldData, vars[i].data);
-#endif
             return 0;
         }
     }
@@ -44,33 +40,16 @@ char* getVarData(char* _varName){
     return NULL;
 }
 
-int setVartoVar(char* _varName1, char *_varName2){
-    printf("Var 1 name: %s, var 2 name %s\n", _varName1, _varName2);
+int setVarToVar(char *_varName1, char *_varName2){
     char* varData = getVarData(_varName2);
     if(varData == NULL){
         //var 2 does not exist
         return -2;
     }
-    int returned = editVariable(_varName1, varData);
-    if(returned == -1){
-        //var 1 does not exist
-        return -1;
-    }else{
-        return 0;
-    }
+    return editVariable(_varName1, varData);
+    //-1 if var 1 does not exist, 0 on success.
 }
 
-VAR findVariable(char *_name) {
-    for (int i = 0; i < varsSize; i++) {
-        if (strcmp(vars[i].name, _name) == 0) {
-            return vars[i];
-        }
-    }
-    VAR var;
-    var.name = NULL;
-    var.data = NULL;
-    return var;
-}
 
 int createVariable(char *_name, char *_data) {
     varsSize++;
@@ -80,5 +59,7 @@ int createVariable(char *_name, char *_data) {
     v1.name = malloc(sizeof(_name));
     if(strcpy(v1.data, _data) && strcpy(v1.name, _name)){
         vars[varsSize - 1] = v1;
+        return 0;
     }
+    return -1;
 }

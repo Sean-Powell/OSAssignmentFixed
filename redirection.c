@@ -7,51 +7,36 @@
 #include <malloc.h>
 #include <memory.h>
 #include <stdbool.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "variables.h"
+int fileFd;
+int temp;
 
-char* targetForRedirection;
-
-int outputRedirection(char *_string, VAR *_vars, int _numOfVars, bool _append, FILE* file) {
-    char *output;
-    size_t size = strlen(_string);
-    int offset = 0;
-    int i = 0;
-    for(i = 0; i < _numOfVars; i++){
-        size+=strlen(_vars[i].data);
-    }
-    i = 0;
-    if (_numOfVars > 0) {
-        output = malloc(size * sizeof(char) + 1);
-        int j = 0;
-        while (i < strlen(_string)) {
-            if (_string[i] == '%') {
-                if (j < _numOfVars) {
-                    int k = 0;
-                    while (k < strlen(_vars[j].data)) {
-                        if (_vars[j].data[k] != '\0') {
-                            output[i + offset] = _vars[j].data[k];
-                            k++;
-                            offset++;
-                        }
-                    }
-                    j++;
-                    offset--;
-                } else {
-                    return -2;
-                }
-            } else {
-                if (_string[i] != '\0')
-                    output[i + offset] = _string[i];
-            }
-            i++;
-        }
-    } else {
-        output = _string;
+int startOutputRedirection(char* _fileLocation, bool _append){
+    temp = dup(fileno(stdout));
+    if(_append) {
+        printf("apending\nn");
+        fileFd = open(_fileLocation, O_WRONLY|O_CREAT|O_APPEND, 0666);
+    }else{
+        fileFd = open(_fileLocation, O_WRONLY|O_CREAT|O_TRUNC, 0666);
     }
 
-    output[i + offset]='\0';
-    printf("Writing %s to file\n", output);
-    fwrite(output, sizeof(char), strlen(output), file);
+    if(dup2(fileFd, fileno(stdout)) == -1){
+        printf("ERROR starting output redirection\n");
+        return -1;
+    }
+
+    return 0;
+}
+
+int stopOutputRedirection(){
+    fflush(stdout);
+    close(fileFd);
+
+    dup2(temp, fileno(stdout));
+    close(temp);
+
     return 0;
 }
 
@@ -85,14 +70,3 @@ int checkForRedirection(const char* _input){
     }
 }
 
-char* getTarget(){
-    return targetForRedirection;
-}
-
-int setTarget(char* _target){
-    printf("Setting target to %s\n", _target);
-    targetForRedirection = malloc((strlen(_target))* sizeof(char));
-    strcpy(targetForRedirection, _target);
-    printf("Target set to %s\n", _target);
-    return 0;
-}

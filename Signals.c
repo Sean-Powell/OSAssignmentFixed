@@ -15,6 +15,7 @@ int stackSize = -1;
 
 void pushToStack(int _pid){
      if(stackSize + 1 <= MAX_PIDS){
+         printf("pid %d added to stack\n", _pid);
          stackSize++;
          pidStack[stackSize] = _pid;
      }else{
@@ -27,6 +28,7 @@ pid_t popFromStack(){
         printf("ERROR: no pids on the stack\n");
     }else{
         pid_t returnPid = pidStack[stackSize];
+        printf("pid %d removed from stack\n", returnPid);
         stackSize--;
         return returnPid;
     }
@@ -53,6 +55,7 @@ void signalManager(int _signal){
 void quitHandler(int _signal){
     printf("Quitting\n");
     kill(pid, SIGINT);
+    popFromStack();
 }
 
 void sleepHandler(int _signal){
@@ -61,6 +64,8 @@ void sleepHandler(int _signal){
 }
 
 void wakeHandler(int _signal){
+    pid = popFromStack();
     printf("Waking up\n");
     kill(pid, SIGCONT);
+    pushToStack(pid);
 }

@@ -22,6 +22,7 @@ bool inRedirect = false;
 bool exitLoop = false;
 
 char tempLine[255];
+int returnedValue;
 
 int externalCommands(char *_args[MAX_ARGS]);
 
@@ -38,12 +39,6 @@ FILE *openFile(char *_target) {
     return file;
 }
 
-int Debug(char *_toPrint, ...) {
-#ifdef DEBUG
-    printf("%s", _toPrint);
-#endif
-}
-
 int internalVars(char **_args) {
     int counter = 0;
     for (int i = 0; i < strlen(_args[0]); i++) {
@@ -52,7 +47,6 @@ int internalVars(char **_args) {
         }
     }
 
-    printf("Number of vars: %d\n", counter);
     if (counter == 2) {
         //todo set var to a var
         char var1name[MAX_VAR_SIZE];
@@ -60,10 +54,8 @@ int internalVars(char **_args) {
         int i = 0, k = 0;
         while (_args[0][i] != '=') {
             if (k < strlen(_args[0])) {
-                printf("DEBUG: %c != %c\n", _args[0][i], '=');
                 k++;
             }
-            //strncpy(&name[i], &temp[i], 1);
             var1name[i] = _args[0][i];
             i++;
         }
@@ -75,7 +67,7 @@ int internalVars(char **_args) {
         }
         var2name[i - strlen(var1name) - 1] = '\0';
 
-        int returned = setVartoVar(var1name, var2name);
+        int returned = setVarToVar(var1name, var2name);
         if (returned == 0) {
             printf("Var %s was set to %s\n", var1name, var2name);
         } else if (returned == -1) {
@@ -92,16 +84,12 @@ int internalVars(char **_args) {
 
         while (temp[i] != '=') {
             if (k < sizeof(temp)) {
-                printf("DEBUG: %c != %c\n", temp[i], '=');
                 k++;
             }
-            //strncpy(&name[i], &temp[i], 1);
             name[i] = temp[i];
             i++;
         }
         name[i] = '\0';
-        printf("DEBUG: name ends at %d\n", i);
-
         i++;
 
         for (int j = 0; i < strlen(temp); j++) {
@@ -109,8 +97,6 @@ int internalVars(char **_args) {
             i++;
         }
         data[i - strlen(name) - 1] = '\0';
-        printf("DEBUG: data ends at %d\n", i);
-        printf("DEBUG: creating variable name: %s, data: %s\n", name, data);
         VAR *vars = getVars();
         int varSize = getVarsSize();
         bool found = false;
@@ -121,20 +107,19 @@ int internalVars(char **_args) {
             }
         }
         if (!found) {
-            createVariable(name, data);
+            returnedValue = createVariable(name, data);
+            if(returnedValue == 0){
+                printf("Variable created successfully\n");
+            }else{
+                printf("An error occurred during the creation of the variable %s\n", name);
+            }
         }
     }
     return 0;
 }
 
 int internalPrint(char *_args[MAX_ARGS]) { //todo find the segfault in the program
-    FILE *file = NULL;
     int i = 1;
-    if (outRedirect) {
-        file = openFile(getTarget());
-    }
-
-    printf("DEBUG: FILE CREATED\n");
     if (strstr(_args[i], "\"")) {
         bool firstTime = true;
         bool found = false;
@@ -147,19 +132,7 @@ int internalPrint(char *_args[MAX_ARGS]) { //todo find the segfault in the progr
                             j = sizeof(temp) + 1;
                             found = true;
                         } else {
-                            if (outRedirect) {
-                                VAR var;
-                                var.data = malloc(sizeof(char));
-                                var.data[0] = temp[j];
-                                VAR *vars;
-                                vars = malloc(sizeof(VAR));
-                                vars[0] = var;
-                                outputRedirection("%", vars, 1, append, file);
-                                free(var.data);
-                                free(vars);
-                            } else {
-                                printf("%c", temp[j]);
-                            }
+                            printf("%c", temp[j]);
                         }
                     }
                 } else {
@@ -170,48 +143,17 @@ int internalPrint(char *_args[MAX_ARGS]) { //todo find the segfault in the progr
                     }
                     //no idea why a 2 has to be here.
                     for (int j = x; j < sizeof(temp) - x - 2; j++) {
-                        if (outRedirect) {
-                            VAR var;
-                            var.data = malloc(sizeof(char));
-                            var.data[0] = temp[j];
-                            VAR *vars;
-                            vars = malloc(sizeof(VAR));
-                            vars[0] = var;
-                            outputRedirection("%", vars, 1, append, file);
-                            free(var.data);
-                            free(vars);
-                        } else {
-                            printf("%c", temp[j]);
-                        }
+                        printf("%c", temp[j]);
                     }
-                    if (outRedirect) {
-                        outputRedirection(" ", NULL, 0, append, file);
-                    } else {
-                        printf(" ");
-                    }
-                }
-            } else {
-                if (outRedirect) {
-                    VAR var;
-                    var.data = malloc(strlen(temp) * sizeof(char));
-                    strcpy(var.data, temp);
-                    VAR *vars;
-                    vars = malloc(sizeof(VAR));
-                    vars[0] = var;
-                    outputRedirection("% ", vars, 1, append, file);
-                    free(var.data);
-                    free(vars);
-                } else {
-                    printf("%s", temp);
+
                     printf(" ");
                 }
+            } else {
+                    printf("%s", temp);
+                    printf(" ");
             }
         }
-        if (outRedirect) {
-            outputRedirection("\n", NULL, 0, append, file);
-        } else {
-            printf("\n");
-        }
+        printf("\n");
     } else {
         while (_args[i] != NULL) {
             if (strstr(_args[i], "$")) {
@@ -240,13 +182,7 @@ int changeWorkingDir(char *_dir) {
     getcwd(newCWD, sizeof(newCWD));
     editVariable("$CWD", newCWD);
     if (returned == -1) {
-        if (outRedirect) {
-            FILE *file = openFile(getTarget());
-            outputRedirection("The working directory was unable to be changed", NULL, 0, append, file);
-            fclose(file);
-        } else {
-            printf("The working directory was unable to be changed");
-        }
+        printf("The working directory was unable to be changed");
         return -1;
     } else {
         return 0;
@@ -342,59 +278,28 @@ int scriptFile(char *path) {
             printf("Opening file failed with error num: %d\n", errno);
         }
     }
+
+    return 0;
 }
 
 int internalCommands(char *_args[MAX_ARGS]) {
-    printf("Internal Commands check:\n");
     if (strstr(_args[0], "=")) {
-        printf("= located:\n");
         internalVars(_args);
     } else if (strstr(_args[0], "print")) {
-        printf("print:\n");
         internalPrint(_args);
     } else if (strstr(_args[0], "exit")) {
-        printf("exit:\n");
         exitLoop = true;
         return -1;
     } else if (strstr(_args[0], "chdir")) {
-        printf("chdir:\n");
         changeWorkingDir(_args[1]);
     } else if (strstr(_args[0], "source")) {
-        printf("Source:\n");
         scriptFile(_args[1]);
     } else if (strstr(_args[0], "all")) {
-        printf("All:\n");
         int size = getVarsSize();
         VAR *vars = getVars();
-        if (outRedirect) {
-            FILE *file = openFile(getTarget());
-            printf("%p\n", file);
-            printf("Starting redirect:\n");
-            VAR *varsForRedirect;
-            for (int i = 0; i < size; i++) {
-                printf("Loop %d:\n", i);
-                VAR forRedirect1;
-                forRedirect1.data = malloc(strlen(vars[i].name) * sizeof(char));
-                strcpy(forRedirect1.data, vars[i].name);
-                VAR forRedirect2;
-                forRedirect2.data = malloc(strlen(vars[i].data) * sizeof(char));
-                strcpy(forRedirect2.data, vars[i].data);
-                printf("VAR variables created\n");
-                varsForRedirect = malloc(sizeof(VAR) * 2);
-                printf("Var array created\n");
-                varsForRedirect[0] = forRedirect1;
-                varsForRedirect[1] = forRedirect2;
-                printf("Vars added to the array\n");
-                outputRedirection("Variable %, data %\n", varsForRedirect, 2, append, file);
-                free(varsForRedirect);
-                free(forRedirect2.data);
-                free(forRedirect1.data);
-            }
-            fclose(file);
-        } else {
-            for (int i = 0; i < size; i++) {
-                printf("Variable %s, data: %s\n", vars[i].name, vars[i].data);
-            }
+
+        for (int i = 0; i < size; i++) {
+            printf("Variable %s, data: %s\n", vars[i].name, vars[i].data);
         }
     } else {
         externalCommands(_args);
@@ -438,23 +343,21 @@ int externalCommands(char *_args[MAX_ARGS]) {
     } else {//otherwise waits for the child
         wait(&status);
     }
-    pid_t tempPid;
-    while((tempPid = popFromStack()) != pid);
-    pushToStack(tempPid);
 }
 
 struct sigaction sigHandler;
 
 int main() {
+    printf("new version");
     char *line, *token = NULL, *args[MAX_ARGS], *prompt = "eggshell v1.0->", buffer[MAX_BUFFFER];
     int tokenIndex;
+
     memset(&sigHandler, 0, sizeof(sigHandler));
     sigHandler.sa_handler = signalManager;
     sigaction(SIGINT, &sigHandler, NULL);
     sigaction(SIGCONT, &sigHandler, NULL);
     sigaction(SIGTSTP, &sigHandler, NULL);
 
-    //TODO make all internal command check for redirection first
     createVariable("$PATH", getenv("PATH"));
     createVariable("$USER", getenv("USER"));
     createVariable("$CWD", getenv("PWD"));
@@ -467,81 +370,75 @@ int main() {
 
     while (!exitLoop) {
         while ((line = linenoise(prompt)) != NULL) {
-            printf("Checking for redirection\n");
-            int returnValue = checkForRedirection(line);
-            printf("Redirection returned: %d\n", returnValue);
-            //TODO handle inRedirect
-            token = strtok(line, " ");
-            for (tokenIndex = 0; token != NULL && tokenIndex < (MAX_ARGS - 1); tokenIndex++) {
-                printf("Token %d: %s\n", tokenIndex, token);
-                args[tokenIndex] = token;
-                token = strtok(NULL, " ");
-            }
-            args[tokenIndex] = NULL;
-            printf("All tokens found:\n");
-            switch (returnValue) {
-                case 1:
-                    outRedirect = true;
-                    for (int i = 0; i < tokenIndex; i++) {
-                        if (strstr(args[i], ">")) {
-                            setTarget(args[i + 1]);
-                            printf("Target is: %s\n", args[i + 1]);
-                        } else {
-                            printf("%s is not the target\n", args[i]);
+            if(strlen(line) > 0) {
+                printf("Checking for redirection\n");
+                int returnValue = checkForRedirection(line);
+                printf("Redirection returned: %d\n", returnValue);
+                //TODO handle inRedirect
+                token = strtok(line, " ");
+                for (tokenIndex = 0; token != NULL && tokenIndex < (MAX_ARGS - 1); tokenIndex++) {
+                    printf("Token %d: %s\n", tokenIndex, token);
+                    args[tokenIndex] = token;
+                    token = strtok(NULL, " ");
+                }
+                args[tokenIndex] = NULL;
+                printf("All tokens found:\n");
+                switch (returnValue) {
+                    case 1:
+                        outRedirect = true;
+                        for (int i = 0; i < tokenIndex; i++) {
+                            if (strstr(args[i], ">")) {
+                                startOutputRedirection(args[i+1], append);
+                            }
                         }
-                    }
-                    break;
-                case 2:
-                    outRedirect = true;
-                    append = true;
-                    for (int i = 0; i < tokenIndex; i++) {
-                        if (strstr(args[i], ">>")) {
-                            printf("Target is: %s\n", args[i + 1]);
-                            setTarget(args[i + 1]);
-                        } else {
-                            printf("%s is not the target\n", args[i]);
+                        break;
+                    case 2:
+                        outRedirect = true;
+                        append = true;
+                        for (int i = 0; i < tokenIndex; i++) {
+                            if (strstr(args[i], ">>")) {
+                                startOutputRedirection(args[i+1], append);
+                            }
                         }
-                    }
-                    break;
-                case 0:
-                    //there is no redirection needed.
-                    break;
-                case -1:
-                    inRedirect = true;
-                    inFile = true;
-                    break;
-                case -2:
-                    inRedirect = true;
-                    break;
-                default:
-                    printf("The command has an error in it");
-                    break;
-            }
-            printf("Booleans set: inFile: %d, inRedirect: %d, append: %d, outRedirect: %d\n", inFile, inRedirect,
-                   append,
-                   outRedirect);
-            returnValue = internalCommands(args);
-            if (returnValue == -1) {
-                break;
-            } else {
-                //TODO fix exit codes they are currently broken
-                Debug("DEBUG: changing exitcode\n");
-                size_t length = (size_t) snprintf(NULL, 0, "%d", returnValue);
-                char *src = malloc(sizeof(char) * (length + 1));
-                snprintf(src, length + 1, "%d", returnValue);
-                editVariable("EXITCODE", src);
-            }
 
-            printf("freeing line\n");
-            // Free allocated memory
-            free(line);
+                        break;
+                    case 0:
+                        //there is no redirection needed.
+                        break;
+                    case -1:
+                        inRedirect = true;
+                        inFile = true;
+                        break;
+                    case -2:
+                        inRedirect = true;
+                        break;
+                    default:
+                        printf("The command has an error in it");
+                        break;
+                }
+                returnValue = internalCommands(args);
+                if (returnValue == -1) {
+                    break;
+                } else {
+                    //TODO fix exit codes they are currently broken
+                    size_t length = (size_t) snprintf(NULL, 0, "%d", returnValue);
+                    char *src = malloc(sizeof(char) * (length + 1));
+                    snprintf(src, length + 1, "%d", returnValue);
+                    editVariable("EXITCODE", src);
+                }
 
-            //reset variables for redirection
-            printf("Resetting variables back to false:\n");
-            append = false;
-            outRedirect = false;
-            inRedirect = false;
-            inFile = false;
+                // Free allocated memory
+                free(line);
+
+                //reset variables for redirection
+                append = false;
+                if(outRedirect){
+                    stopOutputRedirection();
+                }
+                outRedirect = false;
+                inRedirect = false;
+                inFile = false;
+            }
         }
     }
 }
