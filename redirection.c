@@ -45,7 +45,6 @@ int checkForRedirection(const char* _input){
     int numOfBackwards = 0;
     int i = 0;
     while(i < strlen(_input)){
-        printf("%c is being checked\n", _input[i]);
         if(_input[i] == '>'){
             numOfForward++;
         }else if(_input[i] == '<'){
@@ -53,8 +52,6 @@ int checkForRedirection(const char* _input){
         }
         i++;
     }
-    printf("Num of >: %d, Num of <: %d\n", numOfForward, numOfBackwards);
-
     if(numOfBackwards == 1 && numOfForward == 0){//input from file
         return -1;
     }else if(numOfBackwards == 3 && numOfForward == 0){//input string

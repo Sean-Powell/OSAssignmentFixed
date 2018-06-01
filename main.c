@@ -28,17 +28,6 @@ int externalCommands(char *_args[MAX_ARGS]);
 
 int internalCommands(char *_args[MAX_ARGS]);
 
-
-FILE *openFile(char *_target) {
-    FILE *file;
-    if (!append) {
-        file = fopen(_target, "w");
-        fclose(file);
-    }
-    file = fopen(_target, "a+");
-    return file;
-}
-
 int internalVars(char **_args) {
     int counter = 0;
     for (int i = 0; i < strlen(_args[0]); i++) {
@@ -48,7 +37,6 @@ int internalVars(char **_args) {
     }
 
     if (counter == 2) {
-        //todo set var to a var
         char var1name[MAX_VAR_SIZE];
         char var2name[MAX_VAR_SIZE];
         int i = 0, k = 0;
@@ -108,9 +96,9 @@ int internalVars(char **_args) {
         }
         if (!found) {
             returnedValue = createVariable(name, data);
-            if(returnedValue == 0){
+            if (returnedValue == 0) {
                 printf("Variable created successfully\n");
-            }else{
+            } else {
                 printf("An error occurred during the creation of the variable %s\n", name);
             }
         }
@@ -118,7 +106,7 @@ int internalVars(char **_args) {
     return 0;
 }
 
-int internalPrint(char *_args[MAX_ARGS]) { //todo find the segfault in the program
+int internalPrint(char *_args[MAX_ARGS]) {
     int i = 1;
     if (strstr(_args[i], "\"")) {
         bool firstTime = true;
@@ -149,8 +137,8 @@ int internalPrint(char *_args[MAX_ARGS]) { //todo find the segfault in the progr
                     printf(" ");
                 }
             } else {
-                    printf("%s", temp);
-                    printf(" ");
+                printf("%s", temp);
+                printf(" ");
             }
         }
         printf("\n");
@@ -284,34 +272,39 @@ int scriptFile(char *path) {
 
 int internalCommands(char *_args[MAX_ARGS]) {
     if (strstr(_args[0], "=")) {
-        internalVars(_args);
+        returnedValue = internalVars(_args);
     } else if (strstr(_args[0], "print")) {
-        internalPrint(_args);
+        returnedValue = internalPrint(_args);
     } else if (strstr(_args[0], "exit")) {
         exitLoop = true;
-        return -1;
+        return 0;
     } else if (strstr(_args[0], "chdir")) {
-        changeWorkingDir(_args[1]);
+        returnedValue = changeWorkingDir(_args[1]);
     } else if (strstr(_args[0], "source")) {
-        scriptFile(_args[1]);
+        returnedValue = scriptFile(_args[1]);
     } else if (strstr(_args[0], "all")) {
         int size = getVarsSize();
         VAR *vars = getVars();
-
         for (int i = 0; i < size; i++) {
             printf("Variable %s, data: %s\n", vars[i].name, vars[i].data);
         }
+        returnedValue = 0;
     } else {
-        externalCommands(_args);
+        returnedValue = externalCommands(_args);
     }
-
+    if (returnedValue != 0) {
+        return returnedValue;
+    }
     return 0;
 }
 
 int externalCommands(char *_args[MAX_ARGS]) {
     char *path = getVarData("$PATH");;
     char *paths[MAX_ARGS]; // unlikely to be more that 255 paths
+    char *newArgs[MAX_ARGS];
     char *token;
+
+    bool redirection = false;
     token = strtok(path, ":");
     int tokenIndex, returnValue, status;
     for (tokenIndex = 0; token != NULL && tokenIndex < (MAX_ARGS - 1); tokenIndex++) {
@@ -321,23 +314,35 @@ int externalCommands(char *_args[MAX_ARGS]) {
     }
 
     pid_t pid = fork();
-    printf("parent pid is %d, and child pid is: %d\n", getppid(), pid);
+    pid_t parentPid;
     pushToStack(pid);
     if (pid == 0) {//child process
         printf("Result of running %s:\n", _args[0]);
-        int i;
-        for (i = 0; i < tokenIndex && i != -1; i++) {
-            char *command = malloc((strlen(_args[0]) + strlen(paths[i]) + 1) * sizeof(char));
-            strcat(command, paths[i]);
+        int k;
+        for (k = 0; k < tokenIndex && k != -1; k++) {
+            char *command = malloc((strlen(_args[0]) + strlen(paths[k]) + 1) * sizeof(char));
+            strcat(command, paths[k]);
             strcat(command, "/");
             strcat(command, _args[0]);
-            returnValue = execv(command, _args);
-            if (returnValue != -1) {
-                i = -1;
+            for (int i = 0; i < MAX_ARGS && !redirection && _args[i] != NULL; i++) {
+                if (_args[i]) {
+                    if (strstr(_args[i], "<") || strstr(_args[i], ">")) {
+                        for (int j = 0; j < i; j++) {
+                            newArgs[j] = malloc(sizeof(char) * (strlen(_args[j]) + 1));
+                            strcpy(newArgs[j], _args[j]);
+                        }
+                        redirection = true;
+                    }
+                }
             }
-            free(command);
+
+            if (redirection) {
+                returnValue = execv(command, newArgs);
+            } else {
+                returnValue = execv(command, _args);
+            }
         }
-        if (i != -1) {
+        if (k != -1) {
             printf("The command could not be run\n");
         }
     } else {//otherwise waits for the child
@@ -348,16 +353,17 @@ int externalCommands(char *_args[MAX_ARGS]) {
 struct sigaction sigHandler;
 
 int main() {
-    printf("new version");
     char *line, *token = NULL, *args[MAX_ARGS], *prompt = "eggshell v1.0->", buffer[MAX_BUFFFER];
     int tokenIndex;
 
+    //signal handling framework
     memset(&sigHandler, 0, sizeof(sigHandler));
     sigHandler.sa_handler = signalManager;
     sigaction(SIGINT, &sigHandler, NULL);
     sigaction(SIGCONT, &sigHandler, NULL);
     sigaction(SIGTSTP, &sigHandler, NULL);
 
+    //creating of shell variables
     createVariable("$PATH", getenv("PATH"));
     createVariable("$USER", getenv("USER"));
     createVariable("$CWD", getenv("PWD"));
@@ -368,27 +374,24 @@ int main() {
     createVariable("$TERMINAL", ttyname(STDIN_FILENO));
     createVariable("$EXITCODE", "0");
 
-    while (!exitLoop) {
-        while ((line = linenoise(prompt)) != NULL) {
-            if(strlen(line) > 0) {
-                printf("Checking for redirection\n");
+    while (!exitLoop) { //main loop
+        while ((line = linenoise(prompt)) != NULL) { //loop that handles linenoise input
+            if (strlen(line) > 0) {
                 int returnValue = checkForRedirection(line);
-                printf("Redirection returned: %d\n", returnValue);
-                //TODO handle inRedirect
+
                 token = strtok(line, " ");
                 for (tokenIndex = 0; token != NULL && tokenIndex < (MAX_ARGS - 1); tokenIndex++) {
-                    printf("Token %d: %s\n", tokenIndex, token);
                     args[tokenIndex] = token;
                     token = strtok(NULL, " ");
                 }
                 args[tokenIndex] = NULL;
-                printf("All tokens found:\n");
+
                 switch (returnValue) {
                     case 1:
                         outRedirect = true;
                         for (int i = 0; i < tokenIndex; i++) {
                             if (strstr(args[i], ">")) {
-                                startOutputRedirection(args[i+1], append);
+                                startOutputRedirection(args[i + 1], append);
                             }
                         }
                         break;
@@ -397,10 +400,9 @@ int main() {
                         append = true;
                         for (int i = 0; i < tokenIndex; i++) {
                             if (strstr(args[i], ">>")) {
-                                startOutputRedirection(args[i+1], append);
+                                startOutputRedirection(args[i + 1], append);
                             }
                         }
-
                         break;
                     case 0:
                         //there is no redirection needed.
@@ -416,23 +418,25 @@ int main() {
                         printf("The command has an error in it");
                         break;
                 }
+
                 returnValue = internalCommands(args);
-                if (returnValue == -1) {
+                if (returnValue != 0) {
+                    //printf("There was an error during the processing of the command\n");
                     break;
-                } else {
-                    //TODO fix exit codes they are currently broken
+                }else {
+                    char src[255];
                     size_t length = (size_t) snprintf(NULL, 0, "%d", returnValue);
-                    char *src = malloc(sizeof(char) * (length + 1));
                     snprintf(src, length + 1, "%d", returnValue);
                     editVariable("EXITCODE", src);
                 }
+
 
                 // Free allocated memory
                 free(line);
 
                 //reset variables for redirection
                 append = false;
-                if(outRedirect){
+                if (outRedirect) {
                     stopOutputRedirection();
                 }
                 outRedirect = false;
@@ -441,4 +445,12 @@ int main() {
             }
         }
     }
+
+    VAR *vars = getVars();
+
+    for (int i = 0; i < getVarsSize(); i++) {
+        free(vars[i].data);
+        free(vars[i].name);
+    }
+    free(vars);
 }

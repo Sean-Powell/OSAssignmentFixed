@@ -7,6 +7,7 @@
 
 void quitHandler(int _signal);
 void sleepHandler(int _signal);
+void killZombies();
 void wakeHandler(int _signal);
 void signalManager(int _signal);
 void pushToStack(int _pid);

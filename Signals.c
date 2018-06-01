@@ -5,6 +5,8 @@
 #include <bits/signum.h>
 #include <signal.h>
 #include <stdio.h>
+#include <sys/wait.h>
+#include <wait.h>
 #include "Signals.h"
 
 #define MAX_PIDS 255
@@ -15,7 +17,6 @@ int stackSize = -1;
 
 void pushToStack(int _pid){
      if(stackSize + 1 <= MAX_PIDS){
-         printf("pid %d added to stack\n", _pid);
          stackSize++;
          pidStack[stackSize] = _pid;
      }else{
@@ -28,7 +29,6 @@ pid_t popFromStack(){
         printf("ERROR: no pids on the stack\n");
     }else{
         pid_t returnPid = pidStack[stackSize];
-        printf("pid %d removed from stack\n", returnPid);
         stackSize--;
         return returnPid;
     }
